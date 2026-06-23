@@ -24,7 +24,7 @@ const validateSignUp = [
     .withMessage(`Username ${lengthErr}`)
     .custom(async (value) => {
       const user = await findUserByUsername(value);
-      if (user) {
+      if (user[0]) {
         throw new Error("Username already exists!");
       }
     }),
