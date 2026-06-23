@@ -1,20 +1,39 @@
-/////// app.js
-
 const path = require("node:path");
 const express = require("express");
-const session = require("express-session");
 const passport = require("passport");
+const indexRouter = require("./routes");
+const expressSession = require("express-session");
+const pool = require("./config/pool");
 const LocalStrategy = require("passport-local").Strategy;
 
+const pgSession = require("connect-pg-simple")(expressSession);
+
 const app = express();
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
-app.use(passport.session());
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
+
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.render("index"));
+app.use(
+  expressSession({
+    store: new pgSession({
+      pool: pool,
+      tableName: "session",
+    }),
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: false,
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
+  }),
+);
+
+app.use(passport.session());
+
+app.use("/", indexRouter);
 
 app.listen(3000, (error) => {
   if (error) {
