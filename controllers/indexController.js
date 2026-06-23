@@ -1,6 +1,6 @@
 const { body, validationResult, matchedData } = require("express-validator");
 const { generatePassword } = require("../lib/passwordUtils");
-const { saveUser } = require("../config/queries");
+const { saveUser, findUserByUsername } = require("../config/queries");
 
 const alphaErr = "must only contain letters.";
 const lengthErr = "must be between 1 and 15 characters.";
@@ -21,7 +21,13 @@ const validateSignUp = [
   body("username")
     .trim()
     .isLength({ min: 1, max: 15 })
-    .withMessage(`Username ${lengthErr}`),
+    .withMessage(`Username ${lengthErr}`)
+    .custom(async (value) => {
+      const user = await findUserByUsername(value);
+      if (user) {
+        throw new Error("Username already exists!");
+      }
+    }),
   body("password")
     .isLength({ min: 5 })
     .withMessage("Password must have at least 5 characters"),

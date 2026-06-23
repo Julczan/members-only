@@ -7,4 +7,11 @@ async function saveUser({ firstName, lastName, username, hashedPassword }) {
   );
 }
 
-module.exports = { saveUser };
+async function findUserByUsername(username) {
+  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
+    username,
+  ]);
+  return rows;
+}
+
+module.exports = { saveUser, findUserByUsername };
