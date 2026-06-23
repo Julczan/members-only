@@ -8,17 +8,29 @@
   </head>
   <body>
     <h2>Register</h2>
+<% if (locals.errors) {%>
+  <ul>
+    <% errors.forEach(function(error) { %>
+      <li><%= error.msg %></li>
+    <% }); %>
+  </ul>
+<% } %>
     <form action="/sign-up" method="post">
       <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" />
+      <input type="text" id="firstName" name="firstName" required />
       <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" />
+      <input type="text" id="lastName" name="lastName" required />
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" />
+      <input type="text" id="username" name="username" required />
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" />
+      <input type="password" id="password" name="password" required />
       <label for="confirmPassword">Confirm password:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" />
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        required
+      />
       <button type="submit">Submit</button>
     </form>
   </body>
