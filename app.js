@@ -4,6 +4,7 @@ const passport = require("passport");
 const indexRouter = require("./routes");
 const expressSession = require("express-session");
 const pool = require("./config/pool");
+const membershipRouter = require("./routes/membership");
 const LocalStrategy = require("passport-local").Strategy;
 
 const pgSession = require("connect-pg-simple")(expressSession);
@@ -34,6 +35,8 @@ app.use(
 app.use(passport.session());
 
 app.use("/", indexRouter);
+
+app.use("/membership", membershipRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);

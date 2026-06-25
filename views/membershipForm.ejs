@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Become a member!</h1>
+    <%- include("partials/errors.ejs") %>
+    <form action="/membership" method="post">
+      <label for="secret">Type in the secret to become a member</label>
+      <input type="password" name="secret" id="secret" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
