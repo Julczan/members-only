@@ -8,6 +8,7 @@ const membershipRouter = require("./routes/membership");
 const LocalStrategy = require("passport-local").Strategy;
 
 const pgSession = require("connect-pg-simple")(expressSession);
+require("./config/passport");
 
 const app = express();
 
@@ -33,6 +34,11 @@ app.use(
 );
 
 app.use(passport.session());
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
 
 app.use("/", indexRouter);
 

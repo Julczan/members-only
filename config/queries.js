@@ -14,4 +14,9 @@ async function findUserByUsername(username) {
   return rows;
 }
 
-module.exports = { saveUser, findUserByUsername };
+async function findUserById(id) {
+  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+  return rows;
+}
+
+module.exports = { saveUser, findUserByUsername, findUserById };
