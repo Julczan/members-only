@@ -1,4 +1,5 @@
 const { body, validationResult, matchedData } = require("express-validator");
+const { updateMembership } = require("../config/queries");
 
 exports.membershipFormGet = (req, res) => {
   res.render("membershipForm");
@@ -14,15 +15,15 @@ const validateMember = [
 
 exports.membershipFormPost = [
   validateMember,
-  (req, res) => {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("membershipForm", {
         errors: errors.array(),
       });
     }
-    //TODO: Get the logged in user and update isMember to true
-    console.log("You became a member");
+    await updateMembership(req.user.id);
+    console.log(`Hello ${req.user.username}, you became a member`);
     res.redirect("/");
   },
 ];

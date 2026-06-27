@@ -26,4 +26,14 @@ async function createMessage({ title, message, authorId }) {
   );
 }
 
-module.exports = { saveUser, findUserByUsername, findUserById, createMessage };
+async function updateMembership(id) {
+  await pool.query("UPDATE users SET isMember = true WHERE id = $1", [id]);
+}
+
+module.exports = {
+  saveUser,
+  findUserByUsername,
+  findUserById,
+  createMessage,
+  updateMembership,
+};
