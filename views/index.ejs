@@ -7,10 +7,10 @@
     <title>Document</title>
   </head>
   <body>
-    <% if (locals.user) {%>
+    <% if (locals.currentUser) {%>
     <h1>
       WELCOME BACK
-      <%= user.username %>
+      <%= currentUser.username %>
       <div>
         <a href="/create-message">
           <button>Create new message</button>
@@ -24,5 +24,6 @@
       <a href="/log-in">log in</a>
     </h1>
     <%}%>
+    <%- include("messageList.ejs") %>
   </body>
 </html>

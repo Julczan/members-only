@@ -1,0 +1,13 @@
+<div class="message">
+  <% if(locals.isCensored){ %>
+  <div class="msg-timestamp">*****</div>
+  <div class="msg-author">*****</div>
+
+  <% }else{ %>
+  <div class="msg-timestamp"><%= message.createdat %></div>
+  <div class="msg-author"><%= message.authorid %></div>
+  <% } %>
+
+  <div class="msg-title"><%= message.title %></div>
+  <div class="msg-message"><%= message.message %></div>
+</div>

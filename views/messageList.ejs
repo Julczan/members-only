@@ -1,0 +1,8 @@
+<div class="messageList">
+  <% if(locals.userMessages) { %> <% userMessages.forEach(message => { %>
+  <%- include("partials/message.ejs", {message: message}) %>
+  <% }); %>
+  <% }else{ %>
+  No messages.
+  <% } %>
+</div>

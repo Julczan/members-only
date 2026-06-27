@@ -26,6 +26,11 @@ async function createMessage({ title, message, authorId }) {
   );
 }
 
+async function getAllMessages() {
+  const { rows } = await pool.query("SELECT * FROM messages");
+  return rows;
+}
+
 async function updateMembership(id) {
   await pool.query("UPDATE users SET isMember = true WHERE id = $1", [id]);
 }
@@ -36,4 +41,5 @@ module.exports = {
   findUserById,
   createMessage,
   updateMembership,
+  getAllMessages,
 };

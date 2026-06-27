@@ -1,6 +1,10 @@
 const { body, validationResult, matchedData } = require("express-validator");
 const { generatePassword } = require("../lib/passwordUtils");
-const { saveUser, findUserByUsername } = require("../config/queries");
+const {
+  saveUser,
+  findUserByUsername,
+  getAllMessages,
+} = require("../config/queries");
 
 const alphaErr = "must only contain letters.";
 const lengthErr = "must be between 1 and 15 characters.";
@@ -42,8 +46,9 @@ exports.signUpFormGet = (req, res) => {
   res.render("signUpForm");
 };
 
-exports.indexPage = (req, res) => {
-  res.render("index", { user: req.user });
+exports.indexPage = async (req, res) => {
+  const messages = await getAllMessages();
+  res.render("index", { userMessages: messages, isCensored: true });
 };
 
 exports.signUpFormPost = [
