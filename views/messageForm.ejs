@@ -11,10 +11,22 @@
     <%- include("partials/errors.ejs") %>
     <form action="/create-message" method="POST">
       <label for="title">Message title:</label>
-      <input id="title" name="title" placeholder="title" type="text" required />
+      <input
+        id="title"
+        name="title"
+        placeholder="Title..."
+        type="text"
+        required
+      />
       <label for="message">Message:</label>
-      <input id="message" name="message" type="password" required />
-      <button type="submit">Log In</button>
+      <input
+        id="message"
+        name="message"
+        placeholder="Message..."
+        type="text"
+        required
+      />
+      <button type="submit">Send</button>
       <a href="/">
         <button type="button">Cancel</button>
       </a>

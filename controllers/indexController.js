@@ -46,11 +46,6 @@ exports.indexPage = (req, res) => {
   res.render("index", { user: req.user });
 };
 
-exports.loginFormGet = (req, res, next) => {
-  res.render("loginForm", { messages: req.session.messages });
-  next();
-};
-
 exports.signUpFormPost = [
   validateSignUp,
   async (req, res, next) => {
