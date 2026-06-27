@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    <% if (locals.currentUser) {%>
+    <% if (locals.isAuth) {%>
     <h1>
       WELCOME BACK
       <%= currentUser.username %>

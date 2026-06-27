@@ -47,8 +47,12 @@ exports.signUpFormGet = (req, res) => {
 };
 
 exports.indexPage = async (req, res) => {
-  const messages = await getAllMessages();
-  res.render("index", { userMessages: messages, isCensored: true });
+  const userMessages = await getAllMessages();
+  res.render("index", {
+    userMessages: userMessages,
+    isAuth: true,
+    isMember: true,
+  });
 };
 
 exports.signUpFormPost = [
@@ -63,6 +67,6 @@ exports.signUpFormPost = [
     const { firstName, lastName, username, password } = matchedData(req);
     const hashedPassword = await generatePassword(password);
     await saveUser({ firstName, lastName, username, hashedPassword });
-    res.redirect("/login");
+    res.redirect("/log-in");
   },
 ];

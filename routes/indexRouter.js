@@ -10,6 +10,7 @@ const {
   loginFormGet,
   clearFailMessages,
 } = require("../controllers/passportController");
+const { isAuth, isMember } = require("./authMiddleware");
 
 const indexRouter = Router();
 
@@ -23,7 +24,7 @@ indexRouter.post(
   }),
 );
 indexRouter.get("/log-out", logOut);
-indexRouter.get("/", indexPage);
+indexRouter.get("/", isAuth, isMember, indexPage);
 indexRouter.get("/sign-up", signUpFormGet);
 indexRouter.post("/sign-up", signUpFormPost);
 
