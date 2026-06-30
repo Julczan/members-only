@@ -4,20 +4,20 @@ const { Client } = require("pg");
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     firstName VARCHAR ( 255 ),
     lastName VARCHAR ( 255 ),
     username VARCHAR ( 255 ) UNIQUE,
     password VARCHAR ( 255 ),
-    isMember BOOLEAN
+    is_member BOOLEAN
     );
     
 CREATE TABLE IF NOT EXISTS messages (
-    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    message_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     title VARCHAR ( 255 ),
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     message VARCHAR ( 255 ),
-    authorId INTEGER REFERENCES users(id) ON DELETE RESTRICT
+    author_id INTEGER REFERENCES users(user_id) ON DELETE RESTRICT
     );
 
 CREATE TABLE "session" (

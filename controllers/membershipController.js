@@ -22,7 +22,7 @@ exports.membershipFormPost = [
         errors: errors.array(),
       });
     }
-    await updateMembership(req.user.id);
+    await updateMembership(req.user.user_id);
     console.log(`Hello ${req.user.username}, you became a member`);
     res.redirect("/");
   },

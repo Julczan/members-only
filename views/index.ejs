@@ -11,20 +11,27 @@
     <h1>
       WELCOME BACK
       <%= currentUser.username %>
-      <div>
-        <a href="/create-message">
-          <button>Create new message</button>
-        </a>
-      </div>
     </h1>
+    <div>
+      <% if(!locals.isMember){ %>
+      <div class="member-message">
+        <a href="/membership">Become a member</a> to see who's posting
+      </div>
+      <% } %>
+      <a href="/create-message">
+        <button>Create new message</button>
+      </a>
+    </div>
     <a href="/log-out">LOG OUT</a>
     <% } else { %>
-    <h1>
+    <h1>Welcome to the club</h1>
+    <h2>
       please
       <a href="/log-in">log in</a>
       or
       <a href="/sign-up">sign up</a>
-    </h1>
+      to post some messages
+    </h2>
     <%}%>
     <%- include("messageList.ejs") %>
   </body>

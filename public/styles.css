@@ -2,3 +2,7 @@ body {
   background-color: black;
   color: white;
 }
+
+.message {
+  border: 1px solid white;
+}

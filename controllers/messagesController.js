@@ -26,8 +26,8 @@ exports.messageFormPost = [
       });
     }
     const { title, message } = matchedData(req);
-    const authorId = req.user.id;
-    await createMessage({ title, message, authorId });
+    const author_id = req.user.user_id;
+    await createMessage({ title, message, author_id });
     res.redirect("/");
   },
 ];

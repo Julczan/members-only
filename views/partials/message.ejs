@@ -1,11 +1,11 @@
 <div class="message">
   <% if(locals.isMember){ %>
-  <div class="msg-timestamp"><%= message.createdat %></div>
-  <div class="msg-author"><%= message.authorid %></div>
+  <div class="msg-author"><%= message.username %></div>
+  <div class="msg-timestamp"><%= message.created_at.toLocaleString() %></div>
 
   <% }else{ %>
-  <div class="msg-timestamp">*****</div>
   <div class="msg-author">*****</div>
+  <div class="msg-timestamp">*****</div>
   <% } %>
 
   <div class="msg-title"><%= message.title %></div>

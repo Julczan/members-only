@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 async function saveUser({ firstName, lastName, username, hashedPassword }) {
   await pool.query(
-    "INSERT INTO users (firstName, lastName, username, password, isMember) VALUES ($1, $2, $3, $4, false)",
+    "INSERT INTO users (firstName, lastName, username, password, is_member) VALUES ($1, $2, $3, $4, false)",
     [firstName, lastName, username, hashedPassword],
   );
 }
@@ -15,24 +15,30 @@ async function findUserByUsername(username) {
 }
 
 async function findUserById(id) {
-  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+  const { rows } = await pool.query("SELECT * FROM users WHERE user_id = $1", [
+    id,
+  ]);
   return rows;
 }
 
-async function createMessage({ title, message, authorId }) {
+async function createMessage({ title, message, author_id }) {
   await pool.query(
-    "INSERT INTO messages (title, message, authorId) VALUES ($1, $2, $3)",
-    [title, message, authorId],
+    "INSERT INTO messages (title, message, author_id) VALUES ($1, $2, $3)",
+    [title, message, author_id],
   );
 }
 
 async function getAllMessages() {
-  const { rows } = await pool.query("SELECT * FROM messages");
+  const { rows } = await pool.query(
+    "SELECT message_id, title, created_at, message, author_id, username FROM messages INNER JOIN users ON author_id = user_id",
+  );
   return rows;
 }
 
 async function updateMembership(id) {
-  await pool.query("UPDATE users SET isMember = true WHERE id = $1", [id]);
+  await pool.query("UPDATE users SET is_member = true WHERE user_id = $1", [
+    id,
+  ]);
 }
 
 module.exports = {

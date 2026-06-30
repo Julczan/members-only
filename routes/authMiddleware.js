@@ -14,10 +14,11 @@ exports.isAuth = async (req, res, next) => {
 };
 
 exports.isMember = async (req, res, next) => {
-  if (req.isAuthenticated() && req.user.ismember) {
+  if (req.isAuthenticated() && req.user.is_member) {
     next();
   } else {
     const userMessages = await getAllMessages();
+
     res.render("index", {
       userMessages: userMessages,
       isAuth: true,
