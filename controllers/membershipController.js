@@ -10,7 +10,7 @@ const validateMember = [
     .custom((value) => {
       return value === process.env.MEMBERSHIP_SECRET;
     })
-    .withMessage("You gave a wrong secret"),
+    .withMessage("That's not the right passcode"),
 ];
 
 exports.membershipFormPost = [

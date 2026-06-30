@@ -4,28 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles.css" />
-    <title>Document</title>
+    <title>Register - Message Board</title>
   </head>
   <body>
-    <h2>Register</h2>
-    <%- include("partials/errors.ejs") %>
-    <form action="/sign-up" method="post">
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" required />
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" required />
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required />
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required />
-      <label for="confirmPassword">Confirm password:</label>
-      <input
-        type="password"
-        id="confirmPassword"
-        name="confirmPassword"
-        required
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <main class="app-container">
+      <div class="form-container">
+        <h2 class="form-title">Register</h2>
+
+        <div class="form-errors"><%- include("partials/errors.ejs") %></div>
+
+        <form action="/sign-up" method="post" class="auth-form">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn-submit">Submit</button>
+        </form>
+
+        <p class="form-footer">
+          Already have an account? <a href="/log-in">Log in</a>
+        </p>
+      </div>
+    </main>
   </body>
 </html>

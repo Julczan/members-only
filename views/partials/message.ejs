@@ -1,19 +1,30 @@
 <div class="message">
-  <% if(locals.isMember){ %>
-  <div class="msg-author"><%= message.username %></div>
-  <div class="msg-timestamp"><%= message.created_at.toLocaleString() %></div>
+  <div class="msg-header">
+    <% if(locals.isMember){ %>
+    <span class="msg-author"><%= message.username %></span>
+    <span class="msg-timestamp"
+      ><%= message.created_at.toLocaleString() %></span
+    >
+    <% } else { %>
+    <span class="msg-author censored">*****</span>
+    <span class="msg-timestamp censored">*****</span>
+    <% } %>
+  </div>
 
-  <% }else{ %>
-  <div class="msg-author">*****</div>
-  <div class="msg-timestamp">*****</div>
-  <% } %>
+  <div class="msg-content">
+    <h3 class="msg-title"><%= message.title %></h3>
+    <p class="msg-body"><%= message.message %></p>
+  </div>
 
-  <div class="msg-title"><%= message.title %></div>
-  <div class="msg-message"><%= message.message %></div>
   <% if(locals.isAdmin){ %>
-  <form action="/<%= message.message_id %>/delete" method="post">
+  <form
+    action="/<%= message.message_id %>/delete"
+    method="post"
+    class="delete-form"
+  >
     <button
       type="submit"
+      class="btn-delete"
       onclick="return confirm('Are you sure you want to delete this message?');"
     >
       Delete message

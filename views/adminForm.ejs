@@ -7,12 +7,26 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Provide an admin password</h1>
-    <%- include("partials/errors.ejs") %>
-    <form action="/admin" method="post">
-      <label for="adminPassword">Admin password:</label>
-      <input type="password" name="adminPassword" id="adminPassword" />
-      <button type="submit">Submit</button>
-    </form>
+    <main class="app-container">
+      <div class="form-container">
+        <h2 class="form-title">Provide an admin password</h2>
+        <div class="form-errors"><%- include("partials/errors.ejs") %></div>
+        <form action="/admin" method="post" class="auth-form">
+          <div class="form-group">
+            <label for="adminPassword">Admin password:</label>
+            <input
+              type="password"
+              name="adminPassword"
+              id="adminPassword"
+              placeholder="••••••••"
+            />
+          </div>
+          <div class="button-group">
+            <button type="submit" class="btn-submit">Submit</button>
+            <a href="/" class="btn-cancel">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </main>
   </body>
 </html>

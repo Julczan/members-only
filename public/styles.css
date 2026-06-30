@@ -1,8 +1,498 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:not(dialog) {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+/* --- CSS Variables for Easy Theming --- */
+:root {
+  /* Backgrounds */
+  --bg-main: #121212;
+  --bg-surface: #1e1e1e;
+  --bg-surface-hover: #2a2a2a;
+
+  /* Text Colors */
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+
+  /* Accents & Borders */
+  --accent-color: #bb86fc; /* A modern purple/indigo accent */
+  --accent-hover: #9965db;
+  --border-color: #333333;
+
+  /* Utility */
+  --border-radius: 8px;
+  --transition-speed: 0.2s;
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.message-list {
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--bg-surface);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+button {
+  background-color: var(--accent-color);
+  color: #121212;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+}
+
+button:hover {
+  background-color: var(--accent-hover);
+}
+
 body {
   background-color: black;
   color: white;
 }
 
+/* --- Layout & Structure --- */
+.app-container {
+  width: 100%;
+  max-width: 800px; /* Gives the whole app a clean, constrained width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* --- Typography & Headings --- */
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.highlight {
+  color: var(--accent-color);
+}
+
+/* --- Links --- */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-speed) ease-in-out;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* --- Specific Components --- */
+.auth-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* A soft, tinted box to draw attention to the membership prompt */
+.member-message {
+  background-color: rgba(187, 134, 252, 0.1);
+  border: 1px solid var(--accent-color);
+  color: var(--text-primary);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 400px;
+}
+
+.logout-link {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.logout-link:hover {
+  color: #cf6679; /* A soft red/pink for destructive actions */
+}
+
+.btn-link {
+  text-decoration: none;
+}
+.btn-link:hover {
+  text-decoration: none;
+}
+
+/* Admin badge styled like a system tag */
+.admin-badge {
+  background-color: #cf6679;
+  color: #121212;
+  padding: 0.25rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.member-badge {
+  background-color: var(--accent-color);
+  color: #121212;
+  padding: 0.25rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.messages-section {
+  width: 100%;
+}
+
+/* --- Message Feed Container --- */
+.messageList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Spaces out the message cards */
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.empty-state {
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+/* --- Individual Message Card --- */
 .message {
-  border: 1px solid white;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition:
+    transform var(--transition-speed) ease-in-out,
+    border-color var(--transition-speed) ease-in-out;
+}
+
+/* Subtle lift and border highlight when hovering over a message */
+.message:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+}
+
+/* --- Message Header (Author & Time) --- */
+.msg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.msg-author {
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.msg-timestamp {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.censored {
+  color: #666;
+  letter-spacing: 2px;
+}
+
+/* --- Message Content --- */
+.msg-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.msg-body {
+  color: #cccccc;
+  line-height: 1.5;
+  white-space: pre-wrap; /* Ensures any line-breaks users typed are preserved */
+}
+
+/* --- Admin Controls --- */
+.delete-form {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: flex-end; /* Pushes the delete button to the right */
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: #cf6679; /* Destructive red */
+  border: 1px solid #cf6679;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+/* Inverts the colors on hover for a strong visual warning */
+.btn-delete:hover {
+  background-color: #cf6679;
+  color: #121212;
+}
+
+/* --- Form Container --- */
+.form-container {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px; /* Keeps the form from getting too wide */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+}
+
+.form-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Form Layout --- */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+/* --- Input Fields --- */
+.form-group input {
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-family: inherit;
+  transition:
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+/* Accent highlight when typing */
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.2);
+}
+
+/* --- Buttons & Footer --- */
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.form-footer {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* --- Error Messages --- */
+.form-errors {
+  color: #cf6679; /* Destructive red */
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Assuming your errors.ejs outputs an unordered list */
+.form-errors ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.form-errors li {
+  background-color: rgba(207, 102, 121, 0.1);
+  border: 1px solid #cf6679;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Textarea Styling --- */
+/* Matches the standard inputs but allows vertical resizing */
+.form-group textarea {
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical; /* Lets the user drag the box taller if they write a lot */
+  transition:
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+/* Accent highlight when typing in the textarea */
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.2);
+}
+
+/* --- Form Button Layout --- */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Make both buttons take up equal space */
+.button-group .btn-submit {
+  margin-top: 0;
+  flex: 1;
+}
+
+/* Secondary button styling for 'Cancel' */
+.btn-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all var(--transition-speed) ease;
+}
+
+/* Subtle highlight that doesn't distract from the main Send button */
+.btn-cancel:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  text-decoration: none;
 }
