@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
     lastName VARCHAR ( 255 ),
     username VARCHAR ( 255 ) UNIQUE,
     password VARCHAR ( 255 ),
-    is_member BOOLEAN
+    is_member BOOLEAN DEFAULT false,
+    is_admin BOOLEAN DEFAULT false
     );
     
 CREATE TABLE IF NOT EXISTS messages (

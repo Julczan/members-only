@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Provide an admin password</h1>
+    <%- include("partials/errors.ejs") %>
+    <form action="/admin" method="post">
+      <label for="adminPassword">Admin password:</label>
+      <input type="password" name="adminPassword" id="adminPassword" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

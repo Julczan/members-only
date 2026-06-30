@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 async function saveUser({ firstName, lastName, username, hashedPassword }) {
   await pool.query(
-    "INSERT INTO users (firstName, lastName, username, password, is_member) VALUES ($1, $2, $3, $4, false)",
+    "INSERT INTO users (firstName, lastName, username, password) VALUES ($1, $2, $3, $4)",
     [firstName, lastName, username, hashedPassword],
   );
 }
@@ -41,6 +41,10 @@ async function updateMembership(id) {
   ]);
 }
 
+async function updateAdmin(id) {
+  await pool.query("UPDATE users SET is_admin = true WHERE user_id = $1", [id]);
+}
+
 module.exports = {
   saveUser,
   findUserByUsername,
@@ -48,4 +52,5 @@ module.exports = {
   createMessage,
   updateMembership,
   getAllMessages,
+  updateAdmin,
 };

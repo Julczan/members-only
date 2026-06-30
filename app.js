@@ -6,6 +6,7 @@ const pool = require("./config/pool");
 const indexRouter = require("./routes/indexRouter");
 const membershipRouter = require("./routes/membershipRouter");
 const messageRouter = require("./routes/messagesRouter");
+const adminRouter = require("./routes/adminRouter");
 const LocalStrategy = require("passport-local").Strategy;
 
 const pgSession = require("connect-pg-simple")(expressSession);
@@ -52,6 +53,8 @@ app.use("/", indexRouter);
 app.use("/membership", membershipRouter);
 
 app.use("/create-message", messageRouter);
+
+app.use("/admin", adminRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);
