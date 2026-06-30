@@ -10,7 +10,8 @@ const {
   loginFormGet,
   clearFailMessages,
 } = require("../controllers/passportController");
-const { isAuth, isMember } = require("./authMiddleware");
+const { isAuth, isMember, isAdmin } = require("./authMiddleware");
+const { deleteMessage } = require("../controllers/messagesController");
 
 const indexRouter = Router();
 
@@ -24,8 +25,9 @@ indexRouter.post(
   }),
 );
 indexRouter.get("/log-out", logOut);
-indexRouter.get("/", isAuth, isMember, indexPage);
+indexRouter.get("/", isAuth, isMember, isAdmin, indexPage);
 indexRouter.get("/sign-up", signUpFormGet);
 indexRouter.post("/sign-up", signUpFormPost);
+indexRouter.post("/:message_id/delete", deleteMessage);
 
 module.exports = indexRouter;

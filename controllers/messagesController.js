@@ -1,5 +1,5 @@
 const { body, validationResult, matchedData } = require("express-validator");
-const { createMessage } = require("../config/queries");
+const { createMessage, deleteMessageFromDB } = require("../config/queries");
 
 const validateMessage = [
   body("title")
@@ -31,3 +31,8 @@ exports.messageFormPost = [
     res.redirect("/");
   },
 ];
+
+exports.deleteMessage = async (req, res) => {
+  await deleteMessageFromDB(req.params.message_id);
+  res.redirect("/");
+};

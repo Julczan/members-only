@@ -7,6 +7,9 @@
     <title>Document</title>
   </head>
   <body>
+    <% if(locals.isAdmin){ %>
+    <div>You are an admin</div>
+    <% } %>
     <% if (locals.isAuth) {%>
     <h1>
       WELCOME BACK

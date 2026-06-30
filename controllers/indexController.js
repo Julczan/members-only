@@ -52,6 +52,7 @@ exports.indexPage = async (req, res) => {
     userMessages: userMessages,
     isAuth: true,
     isMember: true,
+    isAdmin: true,
   });
 };
 

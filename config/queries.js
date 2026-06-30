@@ -45,6 +45,10 @@ async function updateAdmin(id) {
   await pool.query("UPDATE users SET is_admin = true WHERE user_id = $1", [id]);
 }
 
+async function deleteMessageFromDB(id) {
+  await pool.query("DELETE FROM messages WHERE message_id = $1", [id]);
+}
+
 module.exports = {
   saveUser,
   findUserByUsername,
@@ -53,4 +57,5 @@ module.exports = {
   updateMembership,
   getAllMessages,
   updateAdmin,
+  deleteMessageFromDB,
 };
