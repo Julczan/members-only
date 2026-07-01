@@ -11,9 +11,10 @@
       <% if(locals.isAdmin){ %>
       <div class="admin-badge">Admin Mode Active</div>
       <% } %>
-
-      <% if (locals.isAuth) {%>
+      <% if(locals.isMember){ %>
       <div class="member-badge">You are a member</div>
+      <% } %>
+      <% if (locals.isAuth) {%>
       <header class="page-header">
         <h1>
           WELCOME BACK,

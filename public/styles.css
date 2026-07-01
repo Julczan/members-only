@@ -107,14 +107,10 @@ body {
   padding: 2rem;
 }
 
-.message-list {
-  width: 100%;
-  max-width: 600px;
-  background-color: var(--bg-surface);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+@media (max-width: 500px) {
+  body {
+    padding: 1rem;
+  }
 }
 
 button {
@@ -335,6 +331,7 @@ a:hover {
   border: 1px solid #cf6679;
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
+  transition: all var(--transition-speed) ease-in-out;
 }
 
 /* Inverts the colors on hover for a strong visual warning */
@@ -393,8 +390,8 @@ a:hover {
   font-size: 1rem;
   font-family: inherit;
   transition:
-    border-color var(--transition-speed) ease,
-    box-shadow var(--transition-speed) ease;
+    border-color var(--transition-speed) ease-in-out,
+    box-shadow var(--transition-speed) ease-in-out;
 }
 
 /* Accent highlight when typing */
@@ -425,7 +422,6 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-/* Assuming your errors.ejs outputs an unordered list */
 .form-errors ul {
   list-style-type: none;
   padding: 0;
@@ -470,7 +466,8 @@ a:hover {
 }
 
 /* Make both buttons take up equal space */
-.button-group .btn-submit {
+.button-group,
+.btn-submit {
   margin-top: 0;
   flex: 1;
 }
@@ -487,7 +484,7 @@ a:hover {
   border-radius: var(--border-radius);
   text-decoration: none;
   font-weight: 600;
-  transition: all var(--transition-speed) ease;
+  transition: all var(--transition-speed) ease-in-out;
 }
 
 /* Subtle highlight that doesn't distract from the main Send button */
@@ -495,4 +492,8 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
   text-decoration: none;
+}
+
+.riddle {
+  color: var(--text-primary);
 }

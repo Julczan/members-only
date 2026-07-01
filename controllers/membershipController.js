@@ -8,7 +8,7 @@ exports.membershipFormGet = (req, res) => {
 const validateMember = [
   body("secret")
     .custom((value) => {
-      return value === process.env.MEMBERSHIP_SECRET;
+      return value.toLowerCase() === process.env.MEMBERSHIP_SECRET;
     })
     .withMessage("That's not the right passcode"),
 ];
